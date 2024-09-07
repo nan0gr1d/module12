@@ -44,11 +44,13 @@ class Tournament:
         return finishers
 
 class TournamentTest(unittest.TestCase):
+    is_frozen = True
 
     @classmethod
     def setUpClass(cls):
         cls.all_results = []
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def setUp(self):
         self.runn1 = Runner('Усэйн',10)
         self.runn2 = Runner('Андрей', 9)
@@ -61,16 +63,19 @@ class TournamentTest(unittest.TestCase):
                 print(f"{place}: {str(runner)}  ", end='')
             print()
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tourn1(self):
         tour = Tournament(90, self.runn1, self.runn3)
         TournamentTest.all_results.append(tour.start())
         self.assertTrue(str(TournamentTest.all_results[-1][max(TournamentTest.all_results[-1])]) == 'Ник')
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tourn2(self):
         tour = Tournament(90, self.runn2, self.runn3)
         TournamentTest.all_results.append(tour.start())
         self.assertTrue(str(TournamentTest.all_results[-1][max(TournamentTest.all_results[-1])]) == 'Ник')
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tourn3(self):
         tour = Tournament(90, self.runn1, self.runn2, self.runn3)
         TournamentTest.all_results.append(tour.start())

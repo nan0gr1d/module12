@@ -3,6 +3,8 @@
 
 import unittest
 
+#, is_frozen = False
+
 class Runner:
     def __init__(self, name):
         self.name = name
@@ -18,18 +20,23 @@ class Runner:
         return self.name
 
 class RunnerTest(unittest.TestCase):
+    is_frozen = False
+
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_walk(self):
         runner = Runner('runner1')
         for _ in range(10):
             runner.walk()
         super().assertEqual(runner.distance, 50)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_run(self):
         runner = Runner('runner2')
         for _ in range(10):
             runner.run()
         super().assertEqual(runner.distance, 100)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_challenge(self):
         runner1 = Runner('runner3')
         runner2 = Runner('runner4')
